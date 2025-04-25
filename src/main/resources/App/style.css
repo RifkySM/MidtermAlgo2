@@ -1,0 +1,72 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #7d7d7d;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-text-fill: black;
+}
+
+.text-field:focused {
+    -fx-border-color: #007bff; /* Optional: blue border when focused like Bootstrap */
+}
+.table-view {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-padding: 5px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #3b49e6;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-size: 30px;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: black;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: black;
+    -fx-padding: 8px;
+}
+
+.table-view:focused .table-row-cell:focused,
+.table-view .table-row-cell:selected {
+    -fx-background-color: #7d7d7d;
+    -fx-text-fill: white;
+}
+
+.table-view .table-cell:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.table-view .scroll-bar {
+    -fx-opacity: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-transition: opacity 0.3s ease-in-out;
+}
+
+.table-view:hover .scroll-bar {
+    -fx-opacity: 1;
+    -fx-max-width: 12;  /* default width */
+    -fx-max-height: 12;
+}
+
