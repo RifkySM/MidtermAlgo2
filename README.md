@@ -65,3 +65,20 @@ The app uses a **TableView** with three columns:
 -   **NIM**
 -   **Name**
 -   **Email**
+
+```mermaid
+flowchart TD
+    A([Start App]) --> B[Load data from CSV]
+    B --> C{Input Nim, Name, Email}
+    C --> D[Validate inputs]
+    D --> E{Validation passed?}
+    E -- No --> F[Show dialog with validation message]
+    F --> C
+    E -- Yes --> G{Nim exists in CSV?}
+    G -- Yes --> H[Update existing record]
+    G -- No --> I[Create new record]
+    H --> J[Save to CSV]
+    I --> J
+    J --> K[Reload table display]
+    K --> L([End])
+```
