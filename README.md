@@ -15,20 +15,19 @@ The app includes features for:
 -   Sorting data using a **bubble sort algorithm**
 -   Reading and writing to a CSV file for data persistence
 
-src/
-├── main/
-│   ├── java/
-│   │   └── main/
-│   │       ├── App.java
-│   │       ├── Helper.java
-│   │       ├── Controller.java
-│   │       └── Mahasiswa.java
-│   └── resources/
-│       ├── App/
-│       │   ├── index.fxml
-│       │   └── style.css
-│       └── datas/
-│           └── data.csv
+
+### Explanation of Files:
+
+1. **App.java**: The main entry point for the application. This class typically contains the `main` method.
+2. **Helper.java**: A utility class to help with common tasks such as file operations or UI actions.
+3. **Controller.java**: The controller for managing the UI interactions, such as saving, deleting, and sorting student data.
+4. **Mahasiswa.java**: A model class that represents a student's data (NIM, Name, and Email).
+5. **index.fxml**: The layout file for the JavaFX application UI.
+6. **style.css**: The CSS file for styling the UI components.
+7. **data.csv**: A CSV file to store the student data.
+
+This structure ensures that your files are well-organized and easy to maintain, especially with the separation of UI components, logic, and resources.
+
 
 
 #  Features
