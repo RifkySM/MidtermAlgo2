@@ -60,7 +60,7 @@ src/
     -   Email (ascending & descending)
 -   Sorting is done using a **recursive bubble sort algorithm**.
 
-## 📈 TableView Display
+## TableView Display
 
 The app uses a **TableView** with three columns:
 -   **NIM**
