@@ -1,16 +1,23 @@
 package main;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+
+import java.text.DecimalFormat;
 
 public class Mahasiswa {
     private final SimpleStringProperty nim;
     private final SimpleStringProperty name;
-    private final SimpleStringProperty email;
+    private final SimpleDoubleProperty nilaiTugas;
+    private final SimpleDoubleProperty nilaiUts;
+    private final SimpleDoubleProperty nilaiUas;
 
-    public Mahasiswa(String nim, String name, String email) {
+    public Mahasiswa(String nim, String name, double nilaiTugas, double nilaiUts, double nilaiUas) {
         this.nim = new SimpleStringProperty(nim);
         this.name = new SimpleStringProperty(name);
-        this.email = new SimpleStringProperty(email);
+        this.nilaiTugas = new SimpleDoubleProperty(nilaiTugas);
+        this.nilaiUts = new SimpleDoubleProperty(nilaiUts);
+        this.nilaiUas = new SimpleDoubleProperty(nilaiUas);
     }
 
     public String getNim() {
@@ -20,20 +27,39 @@ public class Mahasiswa {
     public String getName() {
         return name.get();
     }
-
-    public String getEmail() {
-        return email.get();
+    public double getNilaiTugas() {
+        return nilaiTugas.get();
     }
 
-    public void setNim(String value) {
-        nim.set(value);
+    public double getNilaiUts() {
+        return nilaiUts.get();
+    }
+    public double getNilaiUas() {
+        return nilaiUas.get();
     }
 
-    public void setName(String value) {
-        name.set(value);
+    public String getAverageGradeFormatted() {
+        double average = getAverageGrade(0);
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(average).replace(".", ","); // Format dengan koma sebagai desimal
     }
 
-    public void setEmail(String value) {
-        email.set(value);
+    public double getAverageGrade(int index) {
+        double[] grades = {nilaiTugas.get(), nilaiUts.get(), nilaiUas.get()};
+        if (index == grades.length) {
+            return 0;
+        }
+        double sumOfGrades = grades[index] + getAverageGrade(index + 1);
+
+        if (index == 0) {
+            return sumOfGrades / grades.length;
+        } else {
+            return sumOfGrades;
+        }
     }
+
+    public double getAverageGrade() {
+        return getAverageGrade(0);
+    }
+
 }

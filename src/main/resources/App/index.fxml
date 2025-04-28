@@ -11,16 +11,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="607.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<AnchorPane prefHeight="607.0" prefWidth="1051.0" style="-fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
       <TableView fx:id="tableView" focusTraversable="false" layoutX="13.0" layoutY="311.0" prefHeight="287.0" prefWidth="575.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="311.0">
          <columns>
-            <TableColumn fx:id="columnNim" editable="false" prefWidth="85.0" sortable="false" text="NIM" />
-            <TableColumn fx:id="columnName" editable="false" prefWidth="312.0" sortable="false" text="Nama" />
-            <TableColumn fx:id="columnEmail" editable="false" prefWidth="157.0" sortable="false" text="Email" />
+            <TableColumn fx:id="columnNim" editable="false" prefWidth="187.0" sortable="false" text="NIM" />
+            <TableColumn fx:id="columnName" editable="false" prefWidth="315.0" sortable="false" text="Nama" />
+            <TableColumn fx:id="columnNilaiTugas" editable="false" prefWidth="129.0" sortable="false" text="Tugas" />
+            <TableColumn fx:id="columnNilaiUts" editable="false" prefWidth="116.0" sortable="false" text="UTS" />
+            <TableColumn fx:id="columnNilaiUas" editable="false" prefWidth="125.0" sortable="false" text="UAS" />
+            <TableColumn fx:id="columnNilaiAkhir" editable="false" prefWidth="140.0" sortable="false" text="Nilai Akhir" />
          </columns>
       </TableView>
-      <VBox layoutX="14.0" layoutY="53.0" prefHeight="184.0" prefWidth="387.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="53.0">
+      <VBox layoutX="14.0" layoutY="53.0" prefHeight="184.0" prefWidth="549.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="53.0">
          <children>
             <Label style="-fx-text-fill: #3b49e6;" text="NIM :">
                <font>
@@ -32,17 +35,12 @@
                   <Font name="System Bold" size="13.0" />
                </font></Label>
             <TextField fx:id="inputName" promptText="Masukkan Nama Lengkap" />
-            <Label style="-fx-text-fill: #3b49e6;" text="E-Mail :">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <TextField fx:id="inputEmail" layoutX="10.0" layoutY="35.0" promptText="Masukan alamat Email" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <VBox layoutX="414.0" layoutY="60.0" prefHeight="109.0" prefWidth="172.0" spacing="10.0">
+      <VBox layoutX="851.0" layoutY="53.0" prefHeight="109.0" prefWidth="172.0" spacing="10.0">
          <children>
             <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveData" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: #3b49e6; -fx-text-fill: white;" text="Save" />
             <Button fx:id="btnClear" layoutX="10.0" layoutY="45.0" mnemonicParsing="false" onAction="#clearInputs" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: #3b49e6; -fx-text-fill: white;" text="Clear" />
@@ -50,12 +48,34 @@
             <Button fx:id="btnReloadTable" layoutX="10.0" layoutY="45.0" mnemonicParsing="false" onAction="#reload" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: #3b49e6; -fx-text-fill: white;" text="Reload Table" />
          </children>
       </VBox>
+      <VBox layoutX="589.0" layoutY="53.0" prefHeight="200.0" prefWidth="244.0" spacing="10.0">
+         <children>
+            <Label style="-fx-text-fill: #3b49e6;" text="Tugas :">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="inputNilaiTugas" promptText="Masukan NIM" />
+            <Label style="-fx-text-fill: #3b49e6;" text="UTS :">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="inputNilaiUts" promptText="Masukan NIM" />
+            <Label style="-fx-text-fill: #3b49e6;" text="UAS :">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="inputNilaiUas" promptText="Masukan NIM" />
+         </children>
+      </VBox>
       <Label layoutX="19.0" layoutY="14.0" prefHeight="25.0" prefWidth="336.0" style="-fx-text-fill: #3b49e6;" text="Data Nama Mahasiswa" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="inputSearch" layoutX="345.0" layoutY="274.0" prefHeight="27.0" prefWidth="240.0" promptText="Search..." />
-      <ComboBox fx:id="inputSort" layoutX="13.0" layoutY="274.0" prefHeight="25.0" prefWidth="319.0" promptText="sort" styleClass="text-field" />
+      <TextField fx:id="inputSearch" layoutX="590.0" layoutY="274.0" prefHeight="27.0" prefWidth="435.0" promptText="Search..." />
+      <ComboBox fx:id="inputSort" layoutX="19.0" layoutY="274.0" prefHeight="27.0" prefWidth="229.0" promptText="sort" styleClass="text-field" />
    </children>
 </AnchorPane>
