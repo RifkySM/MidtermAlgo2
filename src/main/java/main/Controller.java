@@ -317,8 +317,6 @@ public class Controller {
         }
     }
 
-
-
     private void sortTable(String sortOption) {
         ObservableList<Mahasiswa> list = tableView.getItems();
         bubbleSort(list, sortOption);

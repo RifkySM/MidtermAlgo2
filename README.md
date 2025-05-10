@@ -5,7 +5,7 @@
 <br>
 **Kelas : TIF K 24A**
 
-Link Video:
+Link Video: https://1drv.ms/v/c/e2493cb5db2a9b7d/EZEAsIMCyIVCkwixp1C9P0cBCbpuIBuIdKpo-HgaKGV7Nw?e=L70xYm
 
 This project is a simple **JavaFX desktop application** designed to manage a list of student data. The data is stored in a **CSV file** and consists of three fields:
 -   **NIM** 
