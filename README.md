@@ -6,7 +6,9 @@
 This project is a simple **JavaFX desktop application** designed to manage a list of student data. The data is stored in a **CSV file** and consists of three fields:
 -   **NIM** 
 -   **Name**
--   **Email**
+-   **Nilai Tugas**
+-   **Nilai UTS**
+-   **Nilai UAS**
     
 
 The app includes features for:
