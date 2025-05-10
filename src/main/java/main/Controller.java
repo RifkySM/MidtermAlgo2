@@ -362,7 +362,6 @@ public class Controller {
                 }
             }
 
-            // Early exit if no swaps occurred in this pass
             if (!swapped) {
                 break;
             }
