@@ -39,27 +39,22 @@ public class Mahasiswa {
     }
 
     public String getAverageGradeFormatted() {
-        double average = getAverageGrade(0);
+        double average = getAverageGrade();
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(average).replace(".", ","); // Format dengan koma sebagai desimal
     }
 
-    public double getAverageGrade(int index) {
+    public double getAverageGrade() {
         double[] grades = {nilaiTugas.get(), nilaiUts.get(), nilaiUas.get()};
-        if (index == grades.length) {
+        return sumGrades(grades, 0) / grades.length;
+    }
+
+    private double sumGrades(double[] grades, int index) {
+        if (index >= grades.length) {
             return 0;
         }
-        double sumOfGrades = grades[index] + getAverageGrade(index + 1);
-
-        if (index == 0) {
-            return sumOfGrades / grades.length;
-        } else {
-            return sumOfGrades;
-        }
+        return grades[index] + sumGrades(grades, index + 1);
     }
 
-    public double getAverageGrade() {
-        return getAverageGrade(0);
-    }
 
 }
