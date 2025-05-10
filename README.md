@@ -23,7 +23,7 @@ The app includes features for:
 1. **App.java**: The main entry point for the application. This class typically contains the `main` method.
 2. **Helper.java**: A utility class to help with common tasks such as file operations or UI actions.
 3. **Controller.java**: The controller for managing the UI interactions, such as saving, deleting, and sorting student data.
-4. **Mahasiswa.java**: A model class that represents a student's data (NIM, Name, and Email).
+4. **Mahasiswa.java**: A model class that represents a student's data (NIM, Name, and Grades).
 5. **index.fxml**: The layout file for the JavaFX application UI.
 6. **style.css**: The CSS file for styling the UI components.
 7. **data.csv**: A CSV file to store the student data.
