@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.*;
@@ -35,6 +36,7 @@ public class Controller {
     @FXML private TableColumn<Mahasiswa, Double> columnNilaiUas;
     @FXML private TableColumn<Mahasiswa, Double> columnNilaiUts;
     @FXML private TableView<Mahasiswa> tableView;
+    @FXML private Text jumlahSiswaTxt;
 
     private final ObservableList<Mahasiswa> students = FXCollections.observableArrayList();
     private final String[] arraySortLists = {
@@ -142,7 +144,6 @@ public class Controller {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length != 5) continue;
-
                 String existingNim = parts[0].trim();
 
                 if (existingNim.equals(nim)) {
@@ -231,7 +232,7 @@ public class Controller {
     }
 
     private List<Mahasiswa> searchMahasiswa(String keyword) {
-        List<Mahasiswa> matched = new ArrayList<>();
+        List<Mahasiswa> allMahasiswa = new ArrayList<>();
         keyword = keyword.toLowerCase();
 
         try (BufferedReader br = new BufferedReader(new FileReader(dataFilePath))) {
@@ -239,28 +240,36 @@ public class Controller {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 5) {
-                    String nim = parts[0].trim().toLowerCase();
-                    String name = parts[1].trim().toLowerCase();
-                    String email = parts[2].trim().toLowerCase();
-
-                    if (nim.contains(keyword) || name.contains(keyword) || email.contains(keyword)) {
-                        matched.add(new Mahasiswa(
-                                parts[0].trim(),
-                                parts[1].trim(),
-                                Double.parseDouble(parts[2].trim()),
-                                Double.parseDouble(parts[3].trim()),
-                                Double.parseDouble(parts[4].trim())
-                        ));
-                    }
+                    allMahasiswa.add(new Mahasiswa(
+                            parts[0].trim(),
+                            parts[1].trim(),
+                            Double.parseDouble(parts[2].trim()),
+                            Double.parseDouble(parts[3].trim()),
+                            Double.parseDouble(parts[4].trim())
+                    ));
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return Collections.emptyList();
         }
-
+        allMahasiswa.sort(Comparator.comparing(Mahasiswa::getNim));
+        List<Mahasiswa> matched = new ArrayList<>();
+        int index = Collections.binarySearch(allMahasiswa, new Mahasiswa(keyword, "", 0, 0, 0),
+                Comparator.comparing(Mahasiswa::getNim));
+        if (index >= 0) {
+            matched.add(allMahasiswa.get(index));
+        }
+        for (Mahasiswa mhs : allMahasiswa) {
+            if (mhs.getNim().toLowerCase().contains(keyword) ||
+                    mhs.getName().toLowerCase().contains(keyword)) {
+                if (!matched.contains(mhs)) {
+                    matched.add(mhs);
+                }
+            }
+        }
         return matched;
     }
-
 
     private void writeCSV(List<String[]> records) {
         Path path = Paths.get(dataFilePath);
@@ -293,9 +302,21 @@ public class Controller {
             e.printStackTrace();
         }
 
+        int jumlah = hitungJumlahSiswa(0);
+        jumlahSiswaTxt.setText("Jumlah Siswa : " + jumlah);
+
         tableView.setItems(students);
         inputSort.getSelectionModel().clearSelection();
     }
+
+    private int hitungJumlahSiswa(int index) {
+        if (index >= students.size()) {
+            return 0;
+        } else {
+            return 1 + hitungJumlahSiswa(index + 1);
+        }
+    }
+
 
 
     private void sortTable(String sortOption) {

@@ -1,7 +1,11 @@
 
-- **Nama : Rifky Saputra Maylandra**
-- **NIM : 24552011091**
-- **Kelas : TIF K 24A**
+**Nama : Rifky Saputra Maylandra**
+<br>
+**NIM : 24552011091**
+<br>
+**Kelas : TIF K 24A**
+
+Link Video:
 
 This project is a simple **JavaFX desktop application** designed to manage a list of student data. The data is stored in a **CSV file** and consists of three fields:
 -   **NIM** 
