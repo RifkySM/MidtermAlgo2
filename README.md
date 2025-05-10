@@ -64,12 +64,15 @@ This structure ensures that your files are well-organized and easy to maintain, 
 The app uses a **TableView** with three columns:
 -   **NIM**
 -   **Name**
--   **Email**
+-   **Nilai Tugas**
+-   **Nilai Uts**
+-   **Nilai Uas**
+-   **Nilai Akhir**
 
 ```mermaid
 flowchart TD
     A([Start App]) --> B[Load data from CSV]
-    B --> C{Input Nim, Name, Email}
+    B --> C{Input Nim, Name, Nilai Tugas, Nilai Uts, Nilai Uas}
     C --> D[Validate inputs]
     D --> E{Validation passed?}
     E -- No --> F[Show dialog with validation message]

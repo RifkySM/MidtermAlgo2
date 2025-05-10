@@ -55,19 +55,19 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNilaiTugas" promptText="Masukan NIM" />
+            <TextField fx:id="inputNilaiTugas" promptText="Masukan Nilai Tugas" />
             <Label style="-fx-text-fill: #3b49e6;" text="UTS :">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNilaiUts" promptText="Masukan NIM" />
+            <TextField fx:id="inputNilaiUts" promptText="Masukan Nilai UTS" />
             <Label style="-fx-text-fill: #3b49e6;" text="UAS :">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNilaiUas" promptText="Masukan NIM" />
+            <TextField fx:id="inputNilaiUas" promptText="Masukan Nilai UAS" />
          </children>
       </VBox>
       <Label layoutX="19.0" layoutY="14.0" prefHeight="25.0" prefWidth="336.0" style="-fx-text-fill: #3b49e6;" text="Data Nama Mahasiswa" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="14.0">

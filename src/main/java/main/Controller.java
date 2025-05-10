@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.UnaryOperator;
 
 public class Controller {
     private final String dataFilePath = "src/main/resources/datas/data.csv";
@@ -87,29 +88,18 @@ public class Controller {
                 sortTable(selectedSort);
             }
         });
-        TextFormatter<String> numberFormatterTugas = new TextFormatter<>(change -> {
+        UnaryOperator<TextFormatter.Change> numberFilter = change -> {
             String newText = change.getControlNewText();
             if (newText.matches("^[0-9]*\\.?[0-9]*$") || newText.isEmpty()) {
                 return change;
             }
             return null;
-        });
+        };
 
-        TextFormatter<String> numberFormatterUts = new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("^[0-9]*\\.?[0-9]*$") || newText.isEmpty()) {
-                return change;
-            }
-            return null;
-        });
+        TextFormatter<String> numberFormatterTugas = new TextFormatter<>(numberFilter);
+        TextFormatter<String> numberFormatterUts = new TextFormatter<>(numberFilter);
+        TextFormatter<String> numberFormatterUas = new TextFormatter<>(numberFilter);
 
-        TextFormatter<String> numberFormatterUas = new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("^[0-9]*\\.?[0-9]*$") || newText.isEmpty()) {
-                return change;
-            }
-            return null;
-        });
 
         inputNilaiTugas.setTextFormatter(numberFormatterTugas);
         inputNilaiUts.setTextFormatter(numberFormatterUts);
@@ -231,7 +221,7 @@ public class Controller {
                 assert is != null;
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
                     String firstLine = br.readLine();
-                    result = linierSearch(keyword);
+                    result = searchMahasiswa(keyword);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -240,7 +230,7 @@ public class Controller {
         }
     }
 
-    private List<Mahasiswa> linierSearch(String keyword) {
+    private List<Mahasiswa> searchMahasiswa(String keyword) {
         List<Mahasiswa> matched = new ArrayList<>();
         keyword = keyword.toLowerCase();
 
@@ -254,11 +244,13 @@ public class Controller {
                     String email = parts[2].trim().toLowerCase();
 
                     if (nim.contains(keyword) || name.contains(keyword) || email.contains(keyword)) {
-                        matched.add(new Mahasiswa(parts[0].trim(),
+                        matched.add(new Mahasiswa(
+                                parts[0].trim(),
                                 parts[1].trim(),
                                 Double.parseDouble(parts[2].trim()),
                                 Double.parseDouble(parts[3].trim()),
-                                Double.parseDouble(parts[4].trim())));
+                                Double.parseDouble(parts[4].trim())
+                        ));
                     }
                 }
             }
@@ -289,7 +281,7 @@ public class Controller {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 5) {  // Ensure there are 5 parts in the line
+                if (parts.length == 5) {
                     students.add(new Mahasiswa(parts[0].trim(),
                             parts[1].trim(),
                             Double.parseDouble(parts[2].trim()),
