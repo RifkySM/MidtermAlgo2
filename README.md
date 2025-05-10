@@ -78,10 +78,13 @@ flowchart TD
     E -- No --> F[Show dialog with validation message]
     F --> C
     E -- Yes --> G{Nim exists in CSV?}
-    G -- Yes --> H[Update existing record]
     G -- No --> I[Create new record]
-    H --> J[Save to CSV]
-    I --> J
-    J --> K[Reload table display]
-    K --> L([End])
+    G -- Yes --> H{isUpdate true?}
+    H -- Yes --> J[Update existing record]
+    H -- No --> M[Show NIM already taken dialog]
+    M --> C
+    I --> K[Save to CSV]
+    J --> K
+    K --> L[Reload table display]
+    L --> N([End])
 ```
